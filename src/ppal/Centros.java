@@ -7,9 +7,8 @@ import java.sql.Statement;
 
 import conexion.ConexionBD;
 
-public class PruebaConexion {
-
-	public static void main(String[] args) {
+public class Centros {
+public static void main(String[] args) {
 		
 		ConexionBD conexion = new ConexionBD();
 	
@@ -28,16 +27,16 @@ public class PruebaConexion {
 			sentencia=con.createStatement();
 			
 			// Paso 3. Ejecutar sentencia
-			resultado=sentencia.executeQuery("select cod_empleado, nombre, salario from empleados");
-			System.out.println("Cod. Empleado\tNombre\tSalario");
+			resultado=sentencia.executeQuery("select cod_centro, nombre, direccion from centros");
+			System.out.println("Cod. Centro\tNombre\tDireccion");
 			
 			// Paso 4. Recorrer el resultado
 			while(resultado.next()) {
-				int codEmpleado = resultado.getInt("cod_empleado");
+				int codCentro = resultado.getInt("cod_centro");
 				String nombre =resultado.getNString("nombre");
-				int salario=resultado.getInt("salario");
+				String direccion=resultado.getString("direccion");
 				
-				System.out.println(codEmpleado+"\t"+nombre+"\t"+salario);
+				System.out.println(codCentro+"\t"+nombre+"\t"+direccion);
 				}
 			
 		} catch (SQLException e) {
@@ -53,8 +52,11 @@ public class PruebaConexion {
 		
 		
 		// Liberamos la conexion
+		
 		System.out.println("Desconectando de la base de datos");
 		conexion.desconectar();
 	}
 
 }
+
+
